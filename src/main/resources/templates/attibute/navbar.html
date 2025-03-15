@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="" aria-controls=""
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <a class="navbar-brand" th:href="@{/}">Trang chủ</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item" th:if="${auth != null}">
+                    <a class="nav-link" th:href="@{/thongtincanhan}" tabindex="-1" aria-disabled="true">Thông tin cá nhân</a>
+                </li>
+                <li class="nav-item" th:if="${auth == null}">
+                    <a class="nav-link disabled" th:href="@{/thongtincanhan}" tabindex="-1" aria-disabled="false">Thông tin cá nhân</a>
+                </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/banggia}" class="nav-link">Bảng Giá</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/trangdatsan}" class="nav-link">Đặt Sân</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/lichsudatsan}" class="nav-link">Lịch sử đặt sân</a>
+                </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/quanlytaikhoan}" class="nav-link">Quản lý tài khoản</a>
+                </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/quanlysanbong}" class="nav-link">Quản lý sân bóng</a>
+                </li>
+            </ul>
+
+
+
+            <div th:if="${auth != null}" th:object="${auth}">
+                <strong>Chào: </strong>
+                <a th:text="${auth.getUsername()}"> </a>
+                <a type="button" th:href="@{/doimatkhau}"
+                   class="btn btn-outline-primary">Đối mật khẩu</a>
+                <a th:href="@{/logout}" class="btn btn btn-outline-danger">Đăng xuất</a>
+            </div>
+
+            <div th:if="${auth == null}">
+                <a th:href="@{/quenmatkhau}" class="btn btn btn-outline-danger">Quên MK</a>
+
+                <a type="button" th:href="@{/login}"
+                   class="btn btn-outline-primary">Đăng nhập</a>
+                <a type="button" th:href="@{/register}"
+                   class="btn btn-outline-secondary" style="margin: 10px">Đăng ký</a>
+            </div>
+        </div>
+    </div>
+</nav>
